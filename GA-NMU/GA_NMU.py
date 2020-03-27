@@ -15,7 +15,8 @@ from openpyxl import load_workbook
 from openpyxl.styles import Alignment
 import matplotlib.pyplot as plt
 import numpy as np
-
+import tools.resultToCSV
+import tools.Diversity
 
 def show_detail(res, id_teacher):
     '''
@@ -52,38 +53,6 @@ def plt_show_all(res, fit_list, n,id_score):
     for i, r in enumerate(list(np.argsort(np.array(fit_list[:n])))):
         tools.plot_fun.tools.plot_fun.plot_scale(res[r],i,id_score)
 
-def Diversity(lzs=[]):
-    diversity = 0
-    i = 0
-    n = len(lzs[0])
-    # print(lzs[0][0])
-    while i < len(lzs):
-        j = 0
-        diversity_i = 0
-        while j < len(lzs):
-            if j == i:
-                j += 1
-                continue
-            # print(i, j)
-            sum = 0
-
-            for group in range(n):
-                # print(lzs[i][group][0])
-                # print(set(lzs[i][group][0]['teachers']).intersection(set(lzs[j][group][0]['teachers'])))
-                len_max = max(len(lzs[i][group][0]['teachers']),len(lzs[i][group][0]['teachers']))
-                sum += (len_max - len(set(lzs[i][group][0]['teachers']).intersection(set(lzs[j][group][0]['teachers'])))) / len_max
-            # print(111111)
-            sum = sum / n
-            # print('两个粒子差异性', sum)
-            diversity_i += sum
-            j += 1
-            if i == len(lzs):
-                break
-        diversity += diversity_i / (len(lzs)-1)
-        # print('一个粒子与总体的差异性', diversity_i / (len(lzs)-1))
-        i += 1
-    # print("diversity", diversity/len(lzs))
-    return diversity/len(lzs)
 
 
 def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[], same_teacher=[]):
@@ -138,7 +107,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
         lzs, teacher_statu = temp_lzcsh
 
     diversity_list = []
-    diversity_list.append(Diversity(lzs))
+    diversity_list.append(tools.Diversity.Diversity(lzs))
 
 
     # res_his 记录历史最优
@@ -388,8 +357,8 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
 
             # 和全局最优进行比较
             if cost_2 > fit_fun.fit_all(g_best, id_teacher, id_score, score_scale, n, same_teacher):
-                iteration = -1
-                #print("全局最优发生变化")
+                # iteration = -1
+                print("全局最优发生变化")
                 g_best = copy.deepcopy(lz)
 
             # 计算本轮出现最好粒子
@@ -415,7 +384,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
         else:
             g_best_list.append(one_iterator_best_cost)
 
-        diversity_list.append(Diversity(lzs))
+        diversity_list.append(tools.Diversity.Diversity(lzs))
 
         iteration += 1
         if iteration >= (accuracy_level * 50):    # 当迭代超过一定次数没有进步时退出迭代
@@ -470,7 +439,6 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
 
     # 打印图表
     # tools.plot_fun.plot_scale(begin_best, 0,id_score)
-    tools.plot_fun.plot_scale(g_best, "GA-MU-NMU", id_score)
 
     # plt.figure()
     # #print(len(g_best_list))
@@ -490,50 +458,6 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
     # plt.savefig("static/image/no_iterator_07.jpg")
     # plt.savefig("static/image/no_iterator_07.svg",format="svg")
     # plt.show()
-
-    # f.write(str(fit_fun.fit_all(g_best, id_teacher, id_score, score_scale, n, same_teacher)) + ' ' + str(iter_num) + "\n")
-    # f.close()
-    # jg用来记录txt文件，pd_data用于导入excl文件
-    # jg = open(r'C:\Users\44540\Desktop\结果.txt', "w+")
-    # jg = open(r'files\结果(json).txt', "w+")
-    #
-    # #print(g_best)
-    # pd_data = {'学号': [], '绩点': [], '指导老师': [], '评阅老师': [], '答辩老师': []}
-    # for i in g_best:
-    #     jg.write(str('{'))
-    #     p_l = list(i[0].keys())
-    #
-    #     for j in p_l[:-1]:
-    #         jg.write(str('"'+j+'":'+str(i[0][j])+','))
-    #     jg.write(str('"dabian_Teachers":['))
-    #     for j in i[0]['teachers']:
-    #         if i[0]['teachers'].index(j) != 0:
-    #             jg.write(str(','))
-    #         jg.write(str('"' + j + '"'))
-    #     jg.write(str('],'))
-    #     jg.write(str('"Student":['))
-    #     for student in i[1]:
-    #         if i[1].index(student) != 0:
-    #             jg.write(str(','))
-    #         jg.write(str(student))
-    #         pd_data['学号'].append(student)
-    #         pd_data['绩点'].append(id_score[student])
-    #         pd_data['指导老师'].append(id_teacher[student])
-    #         pd_data['评阅老师'].append(res_initial.student_pingyue[student])
-    #         temp = ""
-    #         for te in i[0]['teachers']:
-    #             temp = temp + te + ",\n"
-    #         pd_data['答辩老师'].append(temp)
-    #     pd_data['学号'].append(' ')
-    #     pd_data['绩点'].append(' ')
-    #     pd_data['指导老师'].append(' ')
-    #     pd_data['评阅老师'].append(' ')
-    #     pd_data['答辩老师'].append(' ')
-    #     jg.write(']}\n')
-    # jg.close()
-    # pd_df = pd.DataFrame(pd_data)
-    # # pd_df.to_excel(r'C:\Users\44540\Desktop\结果表格.xlsx')
-    # pd_df.to_excel(r'files\结果表格.xlsx')
 
 
     # 合并答辩老师
@@ -563,7 +487,13 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
     # web_ans = json.dumps(web_ans, ensure_ascii=False)
     # ##print(web_ans)
 
-    print(diversity_list)
+    tools.plot_fun.plot_scale(g_best, "GA_NMU", id_score)
+    # 将结果写到csv
+    tools.resultToCSV.to_CSV(g_best, "GA_NMU", id_score, id_teacher)
+    # 画出迭代过程中多样性的图
+    tools.plot_fun.plot_diversity(diversity_list, "GA_NMU")
+    # 画出迭代过程中适应度的图
+    tools.plot_fun.plot_fitness(g_best_list, "GA_NMU")
 
     return web_ans,g_best_list
 
@@ -585,7 +515,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
 # print(hundred_time)
 # def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[], same_teacher=[], same_teacher_p=[]):
 
-begin(n=5, accuracy_level=2,teachers=4)
+begin(n=4, accuracy_level=2,teachers=4)
 # begin(n=4, accuracy_level=4,teachers=4)
 # for i in range(100):
 #     print(begin(n=4, accuracy_level=2,teachers=4))
