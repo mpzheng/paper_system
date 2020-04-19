@@ -56,7 +56,7 @@ def show_detail(res, id_teacher):
 #         plot_scale(res[r],i,id_score)
 
 
-def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[], same_teacher=[], rd=0):
+def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[], same_teacher=[], rd=0.5):
     '''
         data '评阅数据集2.xlsx'为数据
         n为组数
@@ -64,8 +64,8 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
         n_groups为粒子数
         teachers 为答辩老师
     '''
-    # data = pd.read_excel(io='../input_data/new_data.xlsx')
-    data = pd.read_excel(io=r'../input_data/file.xlsx')
+    data = pd.read_excel(io='../input_data/new_data.xlsx')
+    # data = pd.read_excel(io=r'../input_data/file.xlsx')
     data.columns = ["id", "score", "teacher"]
     # 学号（学生）对应的老师
     id_teacher = dict([*zip(data["id"], data["teacher"])])
@@ -217,7 +217,9 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
 
                 sum_temp = 0
                 # m = random.randint(round(ave_stu * 0.9),round(ave_stu * 1.1))
-                m = ave_stu
+                # m = random.randint(round(ave_stu-2),round(ave_stu+2))
+                m = round(ave_stu)
+                # print("Jun",m)
                 # m = round()
 
                 for i in range(n):
@@ -369,10 +371,12 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
 
             # 和全局最优进行比较
             if cost_2 > fit_fun.fit_all(g_best, id_teacher, id_score, score_scale, n, same_teacher):
-                # iteration = -1
+                iteration = -1
                 print("全局最优发生变化")
                 g_best = copy.deepcopy(lz)
-
+                a,b = tools.fit_fun.show_fit(g_best, id_teacher, id_score, score_scale, n, same_teacher)
+                print("fit:")
+                print(a,b)
             # 计算本轮出现最好粒子
             if cost_2 > one_iterator_best_cost:
                 one_iterator_best_cost = cost_2
@@ -508,10 +512,14 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
     tools.plot_fun.plot_diversity(diversity_list, "GA_MU")
     # 画出迭代过程中适应度的图
     tools.plot_fun.plot_fitness(g_best_list, "GA_MU")
+
     print(g_best_list[-1])
     for group in g_best:
         # print(group)
         print(len(group[1]))
+    a, b = tools.fit_fun.show_fit(g_best, id_teacher, id_score, score_scale, n, same_teacher)
+    print("fit:")
+    print(a, b)
 
     return web_ans,g_best_list
 
@@ -522,10 +530,10 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
 # time = 0
 # while(time<100):
 #     try:
-#         a,b = begin(n=4, accuracy_level=2, teachers=4)
-#         hundred_time.append(b)
+#         a,b = begin(n=4, accuracy_level=2, teachers=4,rd=0.5)
+#         hundred_time.append(b[-1])
 #         time+=1
-#         print(len(b))
+#         # print(len(b))
 #         print("---",time,"---")
 #     except Exception as e:
 #         pass
@@ -535,9 +543,11 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
 # print(max(hundred_time))
 # print(min(hundred_time))
 # print(sum(hundred_time)/100)
+# with open(r"../output/statistic_data.txt","a+") as f:
+#     f.write("GA-MU 100:"+'\n' + json.dumps(hundred_time) +'\n')
 
 
-a,b = begin(n=4, accuracy_level=2,teachers=4)
+a,b = begin(n=5, accuracy_level=2,teachers=4)
 # a,b = begin(n=4, accuracy_level=4,teachers=4)
 # print(b)
 
@@ -572,7 +582,7 @@ a,b = begin(n=4, accuracy_level=2,teachers=4)
 #         with open("./rand.txt",'a+') as f:
 #             f.write(json.dumps(y))
 #             f.write("\n")
-
+#
 # for i in range(100):
 #     print(begin(n=4, accuracy_level=2,teachers=4))
 # print(begin(n=33, accuracy_level=1))

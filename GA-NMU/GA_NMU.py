@@ -499,23 +499,29 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
 
 
 # 计算100次独立实验算平均、最大、最小适应度。
-# hundred_time = []
-# time = 0
-# while(time<100):
-#     try:
-#         a,b = begin(n=4, accuracy_level=2, teachers=4)
-#         hundred_time.append(b)
-#         print("长度：",len(b))
-#         time+=1
-#         print("---",time,"---")
-#     except Exception as e:
-#         pass
-#     finally:
-#         pass
-# print(hundred_time)
+hundred_time = []
+time = 0
+while(time<100):
+    try:
+        a,b = begin(n=4, accuracy_level=2, teachers=4)
+        hundred_time.append(b[-1])
+        print("长度：",len(b))
+        time+=1
+        print("---",time,"---")
+    except Exception as e:
+        pass
+    finally:
+        pass
+print(hundred_time)
+print(max(hundred_time))
+print(min(hundred_time))
+print(sum(hundred_time)/100)
+with open(r"../output/statistic_data.txt","a+") as f:
+    f.write("GA-NMU 100:"+'\n' + json.dumps(hundred_time) +'\n')
+
 # def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[], same_teacher=[], same_teacher_p=[]):
 
-begin(n=4, accuracy_level=2,teachers=4)
+# begin(n=4, accuracy_level=2,teachers=4)
 # begin(n=4, accuracy_level=4,teachers=4)
 # for i in range(100):
 #     print(begin(n=4, accuracy_level=2,teachers=4))
