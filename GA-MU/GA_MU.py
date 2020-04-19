@@ -211,7 +211,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
                 value = []
                 for tea in wait_selec_set_to_list:
                     value.append(len(teacher_statu[tea]))
-                n = len(value)
+                n_dp = len(value)
 
                 ave_stu = len(id_teacher) / len(g_best)
 
@@ -222,7 +222,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
                 # print("Jun",m)
                 # m = round()
 
-                for i in range(n):
+                for i in range(n_dp):
                     j = m
                     while j >= value[i]:
                         tmp = dp[j - value[i]] + value[i]
@@ -235,7 +235,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
                                 return -1
                         j -= 1
 
-                i = n
+                i = n_dp
                 j = m
                 ans = []
 
