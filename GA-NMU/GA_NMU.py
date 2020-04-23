@@ -513,9 +513,9 @@ while(time<100):
     finally:
         pass
 print(hundred_time)
-print(max(hundred_time))
-print(min(hundred_time))
-print(sum(hundred_time)/100)
+# print(max(hundred_time))
+# print(min(hundred_time))
+# print(sum(hundred_time)/100)
 with open(r"../output/statistic_data.txt","a+") as f:
     f.write("GA-NMU 100:"+'\n' + json.dumps(hundred_time) +'\n')
 

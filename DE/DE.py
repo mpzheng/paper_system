@@ -827,7 +827,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
     # 画出迭代过程中适应度的图
     tools.plot_fun.plot_fitness(g_best_list,"DE")
 
-    return web_ans,g_best_list
+    return web_ans,g_best_list,diversity_list
 
 # def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[], same_teacher=[], same_teacher_p=[]):
 
@@ -848,42 +848,48 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
 
 
 # 计算100次独立实验算平均、最大、最小适应度。
-hundred_time = []
-time = 0
-while(time<100):
-    try:
-        a,b = begin(n=4, accuracy_level=2, teachers=4)
-        hundred_time.append(b[-1])
-        # print("长度：",len(b))
-        time+=1
-        print("---",time,"---")
-    except Exception as e:
-        pass
-    finally:
-        pass
-print(hundred_time)
-print(max(hundred_time))
-print(min(hundred_time))
-print(sum(hundred_time)/100)
-with open(r"../output/statistic_data.txt","a+") as f:
-    f.write("DE 100:"+'\n' + json.dumps(hundred_time) +'\n')
-
-# 计算参数alpha对算法的影响
-# his = []
-# i=0
-# while i < 50:
-#     print("----",i,"----")
+# hundred_time = []
+# time = 0
+# while(time<100):
 #     try:
-#         print(i/50)
-#         a,b = begin(n=4, accuracy_level=2, teachers=4,alpha=i/50)
-#         his.append(b[-1])
-#         i+=1
+#         a,b,c = begin(n=4, accuracy_level=2, teachers=4)
+#         hundred_time.append(c)
+#         # print("长度：",len(b))
+#         time+=1
+#         print("---",time,"---")
 #     except Exception as e:
 #         pass
 #     finally:
 #         pass
+# print(hundred_time)
+# # print(max(hundred_time))
+# # print(min(hundred_time))
+# # print(sum(hundred_time)/100)
+# with open(r"../output/statistic_data.txt","a+") as f:
+#     f.write("DE 100 diversity:"+'\n' + json.dumps(hundred_time) +'\n')
+
+# 计算参数alpha对算法的影响
+lst = []
+for j in range(20):
+
+    his = []
+    i=0
+    while i < 50:
+        print("----j", j, "----")
+        print("----i",i,"----")
+        try:
+            print(i/50)
+            a,b = begin(n=4, accuracy_level=2, teachers=4,alpha=i/50)
+            his.append(b[-1])
+            i+=1
+        except Exception as e:
+            pass
+        finally:
+            pass
+    lst.append(his)
+print(lst)
 # print(his)
-# a,b = begin(n=4, accuracy_level=2, teachers=4,alpha=0.7)
+# a,b,c = begin(n=4, accuracy_level=2, teachers=4,alpha=0)
 
 # 一次结果
 # a,b = begin(n=4, accuracy_level=2, teachers=4, alpha=0.7)

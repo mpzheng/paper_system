@@ -521,33 +521,33 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
     print("fit:")
     print(a, b)
 
-    return web_ans,g_best_list
+    return web_ans,g_best_list,diversity_list
 
 # def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[], same_teacher=[], same_teacher_p=[]):
 
 # 计算100次独立实验算平均、最大、最小适应度。
-# hundred_time = []
-# time = 0
-# while(time<100):
-#     try:
-#         a,b = begin(n=4, accuracy_level=2, teachers=4,rd=0.5)
-#         hundred_time.append(b[-1])
-#         time+=1
-#         # print(len(b))
-#         print("---",time,"---")
-#     except Exception as e:
-#         pass
-#     finally:
-#         pass
-# print(hundred_time)
+hundred_time = []
+time = 0
+while(time<100):
+    try:
+        a,b,c = begin(n=4, accuracy_level=2, teachers=4,rd=0.5)
+        hundred_time.append(c)
+        time+=1
+        # print(len(b))
+        print("---",time,"---")
+    except Exception as e:
+        pass
+    finally:
+        pass
+print(hundred_time)
 # print(max(hundred_time))
 # print(min(hundred_time))
 # print(sum(hundred_time)/100)
-# with open(r"../output/statistic_data.txt","a+") as f:
-#     f.write("GA-MU 100:"+'\n' + json.dumps(hundred_time) +'\n')
+with open(r"../output/statistic_data.txt","a+") as f:
+    f.write("GA-MU 100 diversity:"+'\n' + json.dumps(hundred_time) +'\n')
 
 
-a,b = begin(n=5, accuracy_level=2,teachers=4)
+# a,b = begin(n=5, accuracy_level=2,teachers=4)
 # a,b = begin(n=4, accuracy_level=4,teachers=4)
 # print(b)
 

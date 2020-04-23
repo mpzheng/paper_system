@@ -56,7 +56,7 @@ def show_detail(res, id_teacher):
 #         plot_scale(res[r],i,id_score)
 
 
-def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[], same_teacher=[], rd=0.5, alpha=0.8):
+def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[], same_teacher=[], rd=0.5, alpha=0.9):
     '''
         data '评阅数据集2.xlsx'为数据
         n为组数
@@ -722,28 +722,28 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
                 #
 
                 # ---使用针对每个老师以一定概率抽出
-                H_tea_set = set()
-                for teacher in list(H[n_group][0])[:-1]:
-                    if random.random()<alpha:
-                        H_tea_set.add(teacher)
+                # H_tea_set = set()
+                # for teacher in list(H[n_group][0])[:-1]:
+                #     if random.random()<alpha:
+                #         H_tea_set.add(teacher)
 
 
                 # 直接从这组老师中抽出百分之一定概率
-                # H_tea_set = set(list(H[n_group][0])[:-1])
+                H_tea_set = set(list(H[n_group][0])[:-1])
                 # 从历史最优选一部分老师集合
-                # H_tea_set = set(random.sample(H_tea_set, round(len(H_tea_set) * alpha)))
+                H_tea_set = set(random.sample(H_tea_set, round(len(H_tea_set) * alpha)))
                 # H_tea_set = set(random.sample(H_tea_set, round(len(H_tea_set) * alpha)))
 
                 # ---使用针对每个老师以一定概率抽出
-                lz_tea_set = set()
-                for teacher in list(lz[n_group][0])[:-1]:
-                    if random.random() < (1-alpha):
-                        lz_tea_set.add(teacher)
+                # lz_tea_set = set()
+                # for teacher in list(lz[n_group][0])[:-1]:
+                #     if random.random() < (1-alpha):
+                #         lz_tea_set.add(teacher)
 
                 # 直接从这组老师中抽出百分之一定概率
-                # lz_tea_set = set(list(lz[n_group][0])[:-1])
+                lz_tea_set = set(list(lz[n_group][0])[:-1])
                 # 从当前粒子这组选一部分老师集合
-                # lz_tea_set = set(random.sample(lz_tea_set, round(len(lz_tea_set) * alpha)))
+                lz_tea_set = set(random.sample(lz_tea_set, round(len(lz_tea_set) * alpha)))
                 # lz_tea_set = set(random.sample(lz_tea_set, round(len(lz_tea_set) * alpha)))
                 # lz_tea_set = set(random.sample(lz_tea_set, round(len(lz_tea_set) * (1-alpha))))
 
@@ -948,7 +948,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
                 # if p == 1:
                 #     variation_num += 1
                 DE_lzs[index] = copy.deepcopy(V)
-                increase_sum.append(index)
+                # increase_sum.append(index)
                 # if(cost_v>one_iterator_best_cost):
                 #     # print("第{}轮，")
                 #     one_iterator_best_cost = cost_v
@@ -1112,33 +1112,33 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
     print("fit:")
     print(a, b)
 
-    return web_ans,boost_best
+    return web_ans,a+b,diversity_list
 
 # def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[], same_teacher=[], same_teacher_p=[]):
 
 # 计算100次独立实验算平均、最大、最小适应度。
-# hundred_time = []
-# time = 0
-# while(time<100):
-#     try:
-#         a,b = begin(n=4, accuracy_level=2, teachers=4,rd=0.5)
-#         hundred_time.append(b[-1])
-#         time+=1
-#         # print(len(b))
-#         print("---",time,"---")
-#     except Exception as e:
-#         pass
-#     finally:
-#         pass
-# print(hundred_time)
+hundred_time = []
+time = 0
+while(time<100):
+    try:
+        a,b,c = begin(n=4, accuracy_level=2, teachers=4,rd=0.5)
+        hundred_time.append(c)
+        time+=1
+        # print(len(b))
+        print("---",time,"---")
+    except Exception as e:
+        pass
+    finally:
+        pass
+print(hundred_time)
 # print(max(hundred_time))
 # print(min(hundred_time))
 # print(sum(hundred_time)/100)
-# with open(r"../output/statistic_data.txt","a+") as f:
-#     f.write("GA-MU 100:"+'\n' + json.dumps(hundred_time) +'\n')
+with open(r"../output/statistic_data.txt","a+") as f:
+    f.write("BOOST 100 diversity:"+'\n' + json.dumps(hundred_time) +'\n')
 
 
-a,b = begin(n=5, accuracy_level=2,teachers=4)
+# a,b = begin(n=4, accuracy_level=2,teachers=4)
 # a,b = begin(n=4, accuracy_level=4,teachers=4)
 # print(b)
 
