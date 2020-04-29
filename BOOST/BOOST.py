@@ -18,7 +18,7 @@ import numpy as np
 import tools.plot_fun
 import tools.resultToCSV
 import tools.Diversity
-
+import tools.random_pick
 
 def show_detail(res, id_teacher):
     '''
@@ -56,7 +56,7 @@ def show_detail(res, id_teacher):
 #         plot_scale(res[r],i,id_score)
 
 
-def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[], same_teacher=[], rd=0.5, alpha=0.9):
+def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[], same_teacher=[], rd=0.5, alpha=0.9, save = 0.8,no_dabian=[]):
     '''
         data '评阅数据集2.xlsx'为数据
         n为组数
@@ -65,9 +65,11 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
         teachers 为答辩老师
         rd为GA变异概率
         alpha为DE教师抽出概率
+        save 为ABC原蜜源老师抽取概率
     '''
     # data = pd.read_excel(io='../input_data/new_data.xlsx')
-    data = pd.read_excel(io=r'../input_data/file.xlsx')
+    # data = pd.read_excel(io=r'../input_data/file.xlsx')
+    data = pd.read_excel(io=r'../input_data/2020_data.xlsx')
     data.columns = ["id", "score", "teacher"]
     # 学号（学生）对应的老师
     id_teacher = dict([*zip(data["id"], data["teacher"])])
@@ -103,13 +105,13 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
     plt.savefig("figure/global_distribution.jpg")
 
     temp_lzcsh = res_initial.lzcsh(data, n, x, n_groups, teachers, clash_teacher, same_teacher)
-    print(temp_lzcsh)
+
+    # print(temp_lzcsh)
     if isinstance(temp_lzcsh,int):
         # print("无法初始化")
         return -2
     else:
         lzs, teacher_statu = temp_lzcsh
-
     GA_MU_lzs = copy.deepcopy(lzs)
     DE_lzs = copy.deepcopy(lzs)
     ABC_lzs = copy.deepcopy(lzs)
@@ -123,18 +125,40 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
     res_his = copy.deepcopy(lzs)
     cost = 0
     best_indx = 0
-
+    fit_sum = 0     ### ABC适应度总和
+    fit = []        ### ABC适应度列表
+    probability = []    ### ABC蜜源抽取概率
+    change_count = []   ### ABC粒子更新次数
+    test_i = 0
     for lz in lzs:
+        change_count.append(0)
         temp_cost = fit_fun.fit_all(lz, id_teacher, id_score, score_scale, n, same_teacher)
+        if temp_cost < 0:   ### ABC删除适应度小于0的蜜源
+            test_i += 1
+            while True:
+                temp_lzcsh, t_s = res_initial.lzcsh(data, n, x, 1, teachers, clash_teacher, same_teacher)
+                temp_cost = fit_fun.fit_all(temp_lzcsh[0], id_teacher, id_score, score_scale, n, same_teacher)
+                if temp_cost > 0:
+                    lzs[lzs.index(lz)] = copy.deepcopy(temp_lzcsh[0])
+                    break
+        # print('cccccccccccccccccc')
+        fit.append(temp_cost)
+        fit_sum += temp_cost
         if temp_cost > cost:
             cost = temp_cost
             best_indx = lzs.index(lz)
+
+    for lz_fit in fit:
+        probability.append(lz_fit/fit_sum)
+
     # boost_best 全局最优粒子
     boost_best =  copy.deepcopy(lzs[best_indx])
     # GA全局最优粒子 = boost_best
     g_best = boost_best
     #DE 全局最优粒子 d_best = boost_best
     d_best = boost_best
+    ### ABC 全局最优粒子 a_best = boost_best
+    a_best = boost_best
 
 
     # boost全局最优历史列表
@@ -160,7 +184,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
     # f = open(r'C:\Users\44540\Desktop\czh.txt', "a")
 
 
-    for iter_num in range(500):
+    for iter_num in range(150):
         print("当前迭代到第{}轮".format(iter_num))
         # 开始GA
         # =======================================================================================================
@@ -370,16 +394,14 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
             for group in lz:  # 2019/10/23不一起答辩
                 for c_t in clash_teacher:
                     for ct in c_t:
-                        if ct in list(group[0].keys())[:-1] and ct not in group[0]['teachers']:
-                            group[0]['teachers'].append(ct)
+                        if ct in group[0]['teachers']:
                             d_t = 0
-                            while (True):
-                                if group[0]['teachers'][d_t] in c_t:
-                                    d_t += 1
-                                    continue
-                                if len(group[0]['teachers']) <= teachers:
+                            while True:
+                                if group[0]['teachers'][d_t] != ct and group[0]['teachers'][d_t] in c_t:
+                                    group[0]['teachers'].pop(d_t)
+                                d_t += 1
+                                if d_t >= len(group[0]['teachers']):
                                     break
-                                group[0]['teachers'].pop(d_t)
 
             # 计算迭代后粒子的cost
             cost_2 = fit_fun.fit_all(lz, id_teacher, id_score, score_scale, n, same_teacher)
@@ -396,13 +418,13 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
             # 和全局最优进行比较
             if cost_2 > fit_fun.fit_all(g_best, id_teacher, id_score, score_scale, n, same_teacher):
                 iteration = -1
-                print("GA 全局最优发生变化")
+                print("GA 全局最优发生变化:",cost_2)
                 g_best = copy.deepcopy(lz)
 
 
                 a,b = tools.fit_fun.show_fit(g_best, id_teacher, id_score, score_scale, n, same_teacher)
                 print("fit:")
-                print(a,b)
+                print(a+b)
             # 计算本轮出现最好粒子
             if cost_2 > one_iterator_best_cost:
                 one_iterator_best_cost = cost_2
@@ -922,7 +944,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
             # 和全局最优进行比较
             if cost_v > fit_fun.fit_all(d_best, id_teacher, id_score, score_scale, n, same_teacher):
                 iteration = -1
-                print("DE 全局最优发生变化")
+                print("DE 全局最优发生变化:",cost_v)
                 d_best = copy.deepcopy(V)
 
             # 计算本轮出现最好粒子
@@ -973,49 +995,440 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
 # =======================================================================================================
 # =======================================================================================================
 # =======================================================================================================
+        for lz in range(len(ABC_lzs)):
 
-        # PASS
+            # 预回滚
+            lz_re = copy.deepcopy(ABC_lzs[lz])
+
+            # 老师集合
+            teacher_set = set(id_teacher.values())
+
+            # 组装前n-1组 最后一组自动分出来
+            for n_group in range(len(ABC_lzs[lz]) - 1):
+
+                lz_tea_set = set(list(ABC_lzs[lz][n_group][0])[:-1])
+                # 从当前粒子这组选一部分老师集合
+                lz_tea_set = set(random.sample(lz_tea_set, round(len(lz_tea_set) * save)))
+
+                # 迭代后这组老师应该从这个集合中抽
+                wait_selec_set_to_list = list(lz_tea_set)
+
+                # 要与剩下老师集合做交集
+                wait_selec_set_to_list = list(set(wait_selec_set_to_list) & teacher_set)
+
+                # 随机更新
+                random_tea = random.sample(list(teacher_set.difference(wait_selec_set_to_list)),
+                                           round(len(lz_tea_set) * 0.5))
+                wait_selec_set_to_list += random_tea
+
+                # --dp  从n个数中抽 出x个数 使其和最接近m  关于第5点的启发式
+                # 这里的n 是wait_selec_set_to_list 老师对应的学生数 m是平均每组学生数
+                state = []
+                for i in range(100):
+                    state.append([])
+                for i in state:
+                    for j in range(50):
+                        i.append(0)
+                dp = []
+                for i in range(100):
+                    dp.append(0)
+
+                value = []
+                for tea in wait_selec_set_to_list:
+                    value.append(len(teacher_statu[tea]))
+                n_dp = len(value)
+
+                ave_stu = len(id_teacher) / len(a_best)
+
+                sum_temp = 0
+                m = round(ave_stu - sum_temp)
+
+                for i in range(n_dp):
+                    j = m
+                    while j >= value[i]:
+                        tmp = dp[j - value[i]] + value[i]
+                        if tmp > dp[j]:
+                            dp[j] = tmp
+                            try:  ###
+                                state[i][j] = 1
+                            except:
+                                # print("出现异常，分组过少")
+                                return -1
+                        j -= 1
+
+                i = n_dp
+                j = m
+                ans = []
+
+                while i > 0:
+                    i -= 1
+                    if state[i][j] == 1:
+                        ans.append(value[i])
+                        j -= value[i]
+                # -----dp结束 得到对应的数字 之后根据数字来确定哪个老师
+                group_ans = []
+
+                for num in ans:
+                    temp_index = value.index(num)
+                    value[temp_index] = 111111
+                    group_ans.append(wait_selec_set_to_list[temp_index])
+
+                # 确定老师 此时group_ans 就是这组迭代后最后确定的老师
+
+                # 如果抽出来异常 打印！！！
+
+                # ==============这段代码就是把迭代后的结果按照解的形式放到lz中取
+                new_group0 = {}
+                new_group1 = []
+
+                for tea in group_ans:
+                    new_group0[tea] = len(teacher_statu[tea])
+                    new_group1.extend(teacher_statu[tea])
+
+                dabian_teacher = list(group_ans)
+                for stu in new_group1:
+                    if id_teacher[stu] in dabian_teacher:
+                        dabian_teacher.remove(id_teacher[stu])
+
+                t_d = 0
+                while (True):
+                    if len(dabian_teacher) <= teachers:
+                        break
+                    dabian_teacher.pop(t_d)
+
+                new_group0["teachers"] = dabian_teacher
+                # =======================结束这组格式化解
+
+                ABC_lzs[lz][n_group][0] = new_group0
+                ABC_lzs[lz][n_group][1] = new_group1
+
+                group_stu_sum = 0
+
+                for tea in group_ans:
+                    group_stu_sum += len(teacher_statu[tea])
+
+                # 确定了一组老师 所以用本轮可用老师集合 - 用到这组老师集合 之后的几组都需要与teacher取交集
+                teacher_set = teacher_set - set(group_ans)
+
+            # 最后一组的解的格式化================
+            group_stu_sum = 0
+            for tea in list(teacher_set):
+                group_stu_sum += len(teacher_statu[tea])
+
+            new_group0 = {}
+            new_group1 = []
+
+            for tea in list(teacher_set):
+                new_group0[tea] = len(teacher_statu[tea])
+                new_group1.extend(teacher_statu[tea])
+
+            dabian_teacher = list(teacher_set)
+            for teacher in new_group1:
+                if id_teacher[teacher] in dabian_teacher:
+                    dabian_teacher.remove(id_teacher[teacher])
+
+            t_d = 0
+            while (True):
+                if len(dabian_teacher) <= teachers:
+                    break
+                dabian_teacher.pop(t_d)
+
+            new_group0["teachers"] = dabian_teacher
+
+            ABC_lzs[lz][-1][0] = new_group0
+            ABC_lzs[lz][-1][1] = new_group1
+            # 格式化完成 ==================
+            for group in ABC_lzs[lz]:  # 2019/10/23一起答辩
+                for s_t in same_teacher:
+                    res = list(set(s_t).intersection(set(list(group[0].keys())[:-1])))
+                    if len(res) > 0:
+                        for st in s_t:
+                            if st not in group[0]['teachers']:
+                                group[0]['teachers'].append(st)
+                                d_t = 0
+                                while (True):
+                                    if group[0]['teachers'][d_t] in same_teacher:
+                                        d_t += 1
+                                        continue
+                                    if len(group[0]['teachers']) <= teachers:
+                                        break
+                                    group[0]['teachers'].pop(d_t)
+            for group in ABC_lzs[lz]:  # 2019/10/23不一起答辩
+                for c_t in clash_teacher:
+                    for ct in c_t:
+                        if ct in group[0]['teachers']:
+                            d_t = 0
+                            while True:
+                                if group[0]['teachers'][d_t] != ct and group[0]['teachers'][d_t] in c_t:
+                                    group[0]['teachers'].pop(d_t)
+                                d_t += 1
+                                if d_t >= len(group[0]['teachers']):
+                                    break
+
+            # 计算迭代后粒子的cost
+            cost_2 = fit_fun.fit_all(ABC_lzs[lz], id_teacher, id_score, score_scale, n, same_teacher)
+            # 和原先比较
+            if (cost_2 > fit[lz]):
+                fit[lz] = copy.deepcopy(cost_2)
+                # print('change')
+            else:
+                ABC_lzs[lz] = copy.deepcopy(lz_re)
+
+            if (cost_2 > fit_fun.fit_all(a_best, id_teacher, id_score, score_scale, n, same_teacher)):
+                a_best = copy.deepcopy(ABC_lzs[lz])
+                print("ABC 全局最优发生变化",cost_2)
+            #     print('change_g',best_indx)
+            # print('\n')
+
+        for follow in range(20):  # 每轮迭代更新20个解
+            teacher_set = set(id_teacher.values())
+            lz = tools.random_pick.random_pick(probability)
+            lz_re = copy.deepcopy(ABC_lzs[lz])
+            # print("select",lz,fit[lz])
+            for n_group in range(len(ABC_lzs[lz]) - 1):
+
+                lz_tea_set = set(list(ABC_lzs[lz][n_group][0])[:-1])
+                # 从当前粒子这组选一部分老师集合
+                lz_tea_set = set(random.sample(lz_tea_set, round(len(lz_tea_set) * save)))
+
+                # 迭代后这组老师应该从这个集合中抽
+                wait_selec_set_to_list = list(lz_tea_set)
+
+                # 要与剩下老师集合做交集
+                wait_selec_set_to_list = list(set(wait_selec_set_to_list) & teacher_set)
+
+                random_tea = random.sample(list(teacher_set.difference(wait_selec_set_to_list)),
+                                           round(len(lz_tea_set) * 0.5))
+                wait_selec_set_to_list += random_tea
+
+                # --dp  从n个数中抽 出x个数 使其和最接近m  关于第5点的启发式
+                # 这里的n 是wait_selec_set_to_list 老师对应的学生数 m是平均每组学生数
+                state = []
+                for i in range(100):
+                    state.append([])
+                for i in state:
+                    for j in range(50):
+                        i.append(0)
+                dp = []
+                for i in range(100):
+                    dp.append(0)
+
+                value = []
+                for tea in wait_selec_set_to_list:
+                    value.append(len(teacher_statu[tea]))
+                n_dp = len(value)
+
+                ave_stu = len(id_teacher) / len(a_best)
+
+                sum_temp = 0
+                m = round(ave_stu - sum_temp)
+
+                for i in range(n_dp):
+                    j = m
+                while j >= value[i]:
+                    tmp = dp[j - value[i]] + value[i]
+                    if tmp > dp[j]:
+                        dp[j] = tmp
+                        try:  ###
+                            state[i][j] = 1
+                        except:
+                            # print("出现异常，分组过少")
+                            return -1
+                    j -= 1
+
+                i = n_dp
+                j = m
+                ans = []
+
+                while i > 0:
+                    i -= 1
+                    if state[i][j] == 1:
+                        ans.append(value[i])
+                        j -= value[i]
+                # -----dp结束 得到对应的数字 之后根据数字来确定哪个老师
+                group_ans = []
+
+                for num in ans:
+                    temp_index = value.index(num)
+                    value[temp_index] = 111111
+                    group_ans.append(wait_selec_set_to_list[temp_index])
+
+                # 确定老师 此时group_ans 就是这组迭代后最后确定的老师
+
+                # 如果抽出来异常 打印！！！
+
+                # ==============这段代码就是把迭代后的结果按照解的形式放到lz中取
+                new_group0 = {}
+                new_group1 = []
+
+                for tea in group_ans:
+                    new_group0[tea] = len(teacher_statu[tea])
+                    new_group1.extend(teacher_statu[tea])
+
+                dabian_teacher = list(group_ans)
+                for stu in new_group1:
+                    if id_teacher[stu] in dabian_teacher:
+                        dabian_teacher.remove(id_teacher[stu])
+
+                t_d = 0
+                while (True):
+                    if len(dabian_teacher) <= teachers:
+                        break
+                    dabian_teacher.pop(t_d)
+
+                new_group0["teachers"] = dabian_teacher
+                # =======================结束这组格式化解
+
+                ABC_lzs[lz][n_group][0] = new_group0
+                ABC_lzs[lz][n_group][1] = new_group1
+
+                group_stu_sum = 0
+
+                for tea in group_ans:
+                    group_stu_sum += len(teacher_statu[tea])
+
+                # 确定了一组老师 所以用本轮可用老师集合 - 用到这组老师集合 之后的几组都需要与teacher取交集
+                teacher_set = teacher_set - set(group_ans)
+
+            # 最后一组的解的格式化================
+            group_stu_sum = 0
+            for tea in list(teacher_set):
+                group_stu_sum += len(teacher_statu[tea])
+
+            new_group0 = {}
+            new_group1 = []
+
+            for tea in list(teacher_set):
+                new_group0[tea] = len(teacher_statu[tea])
+                new_group1.extend(teacher_statu[tea])
+
+            dabian_teacher = list(teacher_set)
+            for teacher in new_group1:
+                if id_teacher[teacher] in dabian_teacher:
+                    dabian_teacher.remove(id_teacher[teacher])
+
+            t_d = 0
+            while (True):
+                if len(dabian_teacher) <= teachers:
+                    break
+                dabian_teacher.pop(t_d)
+
+            new_group0["teachers"] = dabian_teacher
+
+            ABC_lzs[lz][-1][0] = new_group0
+            ABC_lzs[lz][-1][1] = new_group1
+            # 格式化完成 ==================
+            for group in ABC_lzs[lz]:  # 2019/10/23一起答辩
+                for s_t in same_teacher:
+                    res = list(set(s_t).intersection(set(list(group[0].keys())[:-1])))
+                    if len(res) > 0:
+                        for st in s_t:
+                            if st not in group[0]['teachers']:
+                                group[0]['teachers'].append(st)
+                                d_t = 0
+                                while (True):
+                                    if group[0]['teachers'][d_t] in same_teacher:
+                                        d_t += 1
+                                        continue
+                                    if len(group[0]['teachers']) <= teachers:
+                                        break
+                                    group[0]['teachers'].pop(d_t)
+            for group in ABC_lzs[lz]:  # 2019/10/23不一起答辩
+                for c_t in clash_teacher:
+                    for ct in c_t:
+                        if ct in group[0]['teachers']:
+                            d_t = 0
+                            while True:
+                                if group[0]['teachers'][d_t] != ct and group[0]['teachers'][d_t] in c_t:
+                                    group[0]['teachers'].pop(d_t)
+                                d_t += 1
+                                if d_t >= len(group[0]['teachers']):
+                                    break
+
+            # 计算迭代后粒子的cost
+            cost_2 = fit_fun.fit_all(ABC_lzs[lz], id_teacher, id_score, score_scale, n, same_teacher)
+            # print("new",cost_2)
+            if (cost_2 > fit[lz]):
+                fit[lz] = cost_2
+                # print('change')
+            else:
+                change_count[lz] += 1
+                ABC_lzs[lz] = copy.deepcopy(lz_re)
+                if change_count[lz] > 20:
+                    while True:
+                        temp_lz, t_s = res_initial.lzcsh(data, n, x, 1, teachers, clash_teacher, same_teacher)
+                        if fit_fun.fit_all(temp_lz[0], id_teacher, id_score, score_scale, n, same_teacher) > 0:
+                            ABC_lzs[lz] = copy.deepcopy(temp_lz[0])
+                            break
+                    fit[lz] = fit_fun.fit_all(temp_lz[0], id_teacher, id_score, score_scale, n, same_teacher)
+                    change_count[lz] = 0
+
+            if (cost_2 > fit_fun.fit_all(a_best, id_teacher, id_score, score_scale, n, same_teacher)):
+                iteration = -1
+                print("ABC 全局最优发生变化")
+                a_best = copy.deepcopy(ABC_lzs[lz])
+        # print('\n')
+        a_diversity = tools.Diversity.Diversity(ABC_lzs)
+
 
 # ======================================================================================
-        diversity_list.append((g_diversity+d_diversity)/2)
+        diversity_list.append((g_diversity+d_diversity+a_diversity)/3)
         g_best_val = fit_fun.fit_all(g_best, id_teacher, id_score, score_scale, n, same_teacher)
         d_best_val = fit_fun.fit_all(d_best, id_teacher, id_score, score_scale, n, same_teacher)
-        if(g_best_val>d_best_val):
+        a_best_val = fit_fun.fit_all(a_best, id_teacher, id_score, score_scale, n, same_teacher)
+        temp = max(g_best_val,max(d_best_val,a_best_val))
+        if g_best_val == temp:
             boost_best = copy.deepcopy(g_best)
             g_best = copy.deepcopy(boost_best)
             d_best = copy.deepcopy(boost_best)
+            a_best = copy.deepcopy(boost_best)
             boost_best_list.append(g_best_val)
-        else:
+
+        elif d_best_val == temp:
             boost_best = copy.deepcopy(d_best)
             g_best = copy.deepcopy(boost_best)
             d_best = copy.deepcopy(boost_best)
+            a_best = copy.deepcopy(boost_best)
             boost_best_list.append(d_best_val)
+        else:
+            boost_best = copy.deepcopy(a_best)
+            g_best = copy.deepcopy(boost_best)
+            d_best = copy.deepcopy(boost_best)
+            a_best = copy.deepcopy(boost_best)
+            boost_best_list.append(a_best_val)
 
+        print("--b_best_val__:",temp)
 
         iteration += 1
         if iteration >= (accuracy_level * 50):    # 当迭代超过一定次数没有进步时退出迭代
             break
 
-
-    # 挑出没有作为答辩老师的老师
-    rest_teachers = []
-    for group in boost_best:
-        for i in list(group[0].keys())[:-1]:
-            if i not in group[0]['teachers']:
-                rest_teachers.append(i)
-    # print(rest_teachers)
-    # print(fit_fun.fit_all(g_best, id_teacher, id_score, score_scale, n, same_teacher))
-
-    # 取没有当人答辩老师的老师来补答辩老师不足的组
-    for group in boost_best:
-        while len(group[0]['teachers']) < teachers:
-            random_num = random.randint(0, len(rest_teachers) - 1)
-            if rest_teachers[random_num] not in list(group[0].keys())[:-1] and teacher_statu[rest_teachers[random_num]] \
-                    not in group[1] and res_initial.teacher_teacher[rest_teachers[random_num]] not in group[0][
-                'teachers']:
-                group[0]['teachers'].append(rest_teachers[random_num])
-                rest_teachers.pop(random_num)
-                #print("OK")
+        # 挑出没有作为答辩老师的老师
+        rest_teachers = []
+        for group in boost_best[:-1]:
+            for i in list(group[0].keys())[:-1]:
+                if i not in group[0]['teachers'] and i not in no_dabian:
+                    rest_teachers.append(i)
+        # print(rest_teachers)
+        # print('advance:',advance)
+        # print('g_advance:',g_advance)
+        # print('pre best:', pre_best)
+        # print('next best:', g_best_list[-1])
+        # 取没有当人答辩老师的老师来补答辩老师不足的组
+        for group in boost_best:
+            for no_d in no_dabian:
+                if no_d in group[0]['teachers']:
+                    group[0]['teachers'].pop(group[0]['teachers'].index(no_d))
+                    # print(no_d)
+            while len(group[0]['teachers']) < teachers:
+                random_num = random.randint(0, len(rest_teachers) - 1)
+                if rest_teachers[random_num] not in list(group[0].keys())[:-1] and teacher_statu[
+                    rest_teachers[random_num]] not in group[1] and res_initial.teacher_teacher[
+                    rest_teachers[random_num]] not in group[0]['teachers'] and rest_teachers[
+                    random_num] not in no_dabian:
+                    # print(g_best.index(group), rest_teachers[random_num])
+                    group[0]['teachers'].append(rest_teachers[random_num])
+                    rest_teachers.pop(random_num)
 
     # 2019/10/24
     if fit_fun.fit_all(boost_best, id_teacher, id_score, score_scale, n, same_teacher) < 0:
@@ -1098,7 +1511,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
     # //n个组的分布图
     tools.plot_fun.plot_scale(boost_best, "BOOST", id_score)
     # 将结果写到csv
-    tools.resultToCSV.to_CSV(g_best, "BOOST", id_score, id_teacher)
+    tools.resultToCSV.to_CSV(boost_best, "BOOST", id_score, id_teacher)
     # 画出迭代过程中多样性的图
     tools.plot_fun.plot_diversity(diversity_list, "BOOST")
     # 画出迭代过程中适应度的图
@@ -1109,36 +1522,39 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
         # print(group)
         print(len(group[1]))
     a, b = tools.fit_fun.show_fit(boost_best, id_teacher, id_score, score_scale, n, same_teacher)
-    print("fit:")
-    print(a, b)
+    # print("fit:")
+    # print(a+b)
 
-    return web_ans,a+b,diversity_list
+    return web_ans,a+b,diversity_list,boost_best_list
 
 # def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[], same_teacher=[], same_teacher_p=[]):
 
 # 计算100次独立实验算平均、最大、最小适应度。
-hundred_time = []
-time = 0
-while(time<100):
-    try:
-        a,b,c = begin(n=4, accuracy_level=2, teachers=4,rd=0.5)
-        hundred_time.append(c)
-        time+=1
-        # print(len(b))
-        print("---",time,"---")
-    except Exception as e:
-        pass
-    finally:
-        pass
-print(hundred_time)
+# hundred_time = []
+# time = 0
+# while(time<100):
+#     try:
+#         a,b,c,d = begin(n=4, accuracy_level=2, teachers=4,rd=0.5)
+#         hundred_time.append(b)
+#         time+=1
+#         # print(len(b))
+#         print("---",time,"---")
+#     except Exception as e:
+#         pass
+#     finally:
+#         pass
+# print(hundred_time)
 # print(max(hundred_time))
 # print(min(hundred_time))
 # print(sum(hundred_time)/100)
-with open(r"../output/statistic_data.txt","a+") as f:
-    f.write("BOOST 100 diversity:"+'\n' + json.dumps(hundred_time) +'\n')
+# with open(r"../output/statistic_data.txt","a+") as f:
+#     f.write("BOOSTI(+ABC) 100 DIVERSITY:"+'\n' + json.dumps(hundred_time) +'\n')
+#     print("成功写入！")
 
-
-# a,b = begin(n=4, accuracy_level=2,teachers=4)
+#
+a,b,c,d = begin(n=6, accuracy_level=2,teachers=4,clash_teacher=[['陈昭炯','白清源']],no_dabian=['吴英杰','于元隆','吴运兵'])
+print(d[-1])
+print(d)
 # a,b = begin(n=4, accuracy_level=4,teachers=4)
 # print(b)
 
@@ -1152,7 +1568,7 @@ with open(r"../output/statistic_data.txt","a+") as f:
 #         finally:
 #             pass
 
-# for j in range(20):
+# for j in range(20):真
 #     try:
 #         x_index = []
 #         y = []
@@ -1177,5 +1593,7 @@ with open(r"../output/statistic_data.txt","a+") as f:
 # for i in range(100):
 #     print(begin(n=4, accuracy_level=2,teachers=4))
 # print(begin(n=33, accuracy_level=1))
+
+
 
 

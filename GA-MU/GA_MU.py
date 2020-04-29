@@ -64,8 +64,9 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
         n_groups为粒子数
         teachers 为答辩老师
     '''
-    data = pd.read_excel(io='../input_data/new_data.xlsx')
+    # data = pd.read_excel(io='../input_data/new_data.xlsx')
     # data = pd.read_excel(io=r'../input_data/file.xlsx')
+    data = pd.read_excel(io=r'../input_data/2020_data.xlsx')
     data.columns = ["id", "score", "teacher"]
     # 学号（学生）对应的老师
     id_teacher = dict([*zip(data["id"], data["teacher"])])
@@ -526,29 +527,32 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
 # def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[], same_teacher=[], same_teacher_p=[]):
 
 # 计算100次独立实验算平均、最大、最小适应度。
-hundred_time = []
-time = 0
-while(time<100):
-    try:
-        a,b,c = begin(n=4, accuracy_level=2, teachers=4,rd=0.5)
-        hundred_time.append(c)
-        time+=1
-        # print(len(b))
-        print("---",time,"---")
-    except Exception as e:
-        pass
-    finally:
-        pass
-print(hundred_time)
+# hundred_time = []
+# time = 0
+# while(time<100):
+#     try:
+#         a,b,c = begin(n=4, accuracy_level=2, teachers=4,rd=0.5)
+#         hundred_time.append(b[-1])
+#         time+=1
+#         # print(len(b))
+#         print("---",time,"---")
+#     except Exception as e:
+#         pass
+#     finally:
+#         pass
+# print(hundred_time)
 # print(max(hundred_time))
 # print(min(hundred_time))
 # print(sum(hundred_time)/100)
-with open(r"../output/statistic_data.txt","a+") as f:
-    f.write("GA-MU 100 diversity:"+'\n' + json.dumps(hundred_time) +'\n')
+# with open(r"../output/temp_data.txt","a+") as f:
+#     f.write("GA-MU 100 fit:"+'\n' + json.dumps(hundred_time) +'\n')
 
 
-# a,b = begin(n=5, accuracy_level=2,teachers=4)
-# a,b = begin(n=4, accuracy_level=4,teachers=4)
+
+a,b,c = begin(n=6, accuracy_level=2,teachers=4)
+print(b[-1])
+print(b)
+# a,b,c = begin(n=4, accuracy_level=4,teachers=4)
 # print(b)
 
 # 跑10次取一次话折线图

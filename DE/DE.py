@@ -869,27 +869,28 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
 #     f.write("DE 100 diversity:"+'\n' + json.dumps(hundred_time) +'\n')
 
 # 计算参数alpha对算法的影响
-lst = []
-for j in range(20):
-
-    his = []
-    i=0
-    while i < 50:
-        print("----j", j, "----")
-        print("----i",i,"----")
-        try:
-            print(i/50)
-            a,b = begin(n=4, accuracy_level=2, teachers=4,alpha=i/50)
-            his.append(b[-1])
-            i+=1
-        except Exception as e:
-            pass
-        finally:
-            pass
-    lst.append(his)
-print(lst)
+# lst = []
+# for j in range(20):
+#
+#     his = []
+#     i=0
+#     while i < 50:
+#         print("----j", j, "----")
+#         print("----i",i,"----")
+#         try:
+#             print(i/50)
+#             a,b = begin(n=4, accuracy_level=2, teachers=4,alpha=i/50)
+#             his.append(b[-1])
+#             i+=1
+#         except Exception as e:
+#             pass
+#         finally:
+#             pass
+#     lst.append(his)
+# print(lst)
 # print(his)
-# a,b,c = begin(n=4, accuracy_level=2, teachers=4,alpha=0)
-
+a,b,c = begin(n=4, accuracy_level=2, teachers=4,alpha=0.8)
+print(b[-1])
+print(b)
 # 一次结果
 # a,b = begin(n=4, accuracy_level=2, teachers=4, alpha=0.7)

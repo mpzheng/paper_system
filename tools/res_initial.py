@@ -56,7 +56,7 @@ def lzcsh(data, n, x, n_groups, teachers, clash_teacher=[], same_teacher=[], sam
     for i in list(teacher_statu.keys()):
         for j in teacher_statu[i]:
             student_pingyue[j] = i
-    print(student_pingyue)
+    # print(student_pingyue)
 
     stu_sums = 0
     for num in teacher_statu.values():
@@ -190,8 +190,8 @@ def lzcsh(data, n, x, n_groups, teachers, clash_teacher=[], same_teacher=[], sam
             #     group.append("666")
             #     print(group)
             #     print('---' * 20)
-    print(lzs)
-    print(teacher_teacher)
+    # print(lzs)
+    # print(teacher_teacher)
     return lzs,teacher_statu
 
 
