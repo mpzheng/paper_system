@@ -172,7 +172,7 @@ def fit_all(lz, id_teacher, id_score, score_scale, n, s_teacher=[]):
 
     # print("学生数：",(1-f4)*0.5)
     # print("分布：",(1-f5)*0.5)
-
+    #调整比重
     return f1+f2+f3+(1-f4)*0.5+(1-f5)*0.5
 
 def show_fit(lz, id_teacher, id_score, score_scale, n, s_teacher=[]):

@@ -2,34 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9dfa3050-c55c-4e87-8356-b1ac8185aec9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/input_data/2020_data.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/temp_data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/paper_system.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/paper_system.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BOOST/BOOST.py" beforeDir="false" afterPath="$PROJECT_DIR$/BOOST/BOOST.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BOOST/figure/BOOST_Diversity.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/BOOST/figure/BOOST_Diversity.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BOOST/figure/BOOST_Fitness.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/BOOST/figure/BOOST_Fitness.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BOOST/figure/BOOST_distribution.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/BOOST/figure/BOOST_distribution.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BOOST/figure/BOOST_distribution.svg" beforeDir="false" afterPath="$PROJECT_DIR$/BOOST/figure/BOOST_distribution.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BOOST/figure/global_distribution.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/BOOST/figure/global_distribution.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BOOST/figure/global_distribution.svg" beforeDir="false" afterPath="$PROJECT_DIR$/BOOST/figure/global_distribution.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DE/DE.py" beforeDir="false" afterPath="$PROJECT_DIR$/DE/DE.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DE/figure/DE_Diversity.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/DE/figure/DE_Diversity.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DE/figure/DE_Fitness.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/DE/figure/DE_Fitness.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DE/figure/DE_distribution.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/DE/figure/DE_distribution.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DE/figure/DE_distribution.svg" beforeDir="false" afterPath="$PROJECT_DIR$/DE/figure/DE_distribution.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DE/figure/global_distribution.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/DE/figure/global_distribution.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GA-MU/GA_MU.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-MU/GA_MU.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GA-MU/figure/GA_MU_Diversity.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/GA-MU/figure/GA_MU_Diversity.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GA-MU/figure/GA_MU_Fitness.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/GA-MU/figure/GA_MU_Fitness.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GA-MU/figure/GA_MU_distribution.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/GA-MU/figure/GA_MU_distribution.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GA-MU/figure/GA_MU_distribution.svg" beforeDir="false" afterPath="$PROJECT_DIR$/GA-MU/figure/GA_MU_distribution.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GA-MU/figure/global_distribution.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/GA-MU/figure/global_distribution.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GA-MU/figure/global_distribution.svg" beforeDir="false" afterPath="$PROJECT_DIR$/GA-MU/figure/global_distribution.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/BOOSTresult.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/output/BOOSTresult.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/DEresult.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/output/DEresult.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/GA_MUresult.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/output/GA_MUresult.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/statistic_data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/output/statistic_data.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/res_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/res_initial.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +18,7 @@
     <SUITE FILE_PATH="coverage/paper_system$fit_fun.coverage" NAME="fit_fun Coverage Results" MODIFIED="1585124029238" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
     <SUITE FILE_PATH="coverage/paper_system$Diversity.coverage" NAME="Diversity Coverage Results" MODIFIED="1585120003206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
     <SUITE FILE_PATH="coverage/paper_system$res_initial.coverage" NAME="res_initial Coverage Results" MODIFIED="1588136349770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
-    <SUITE FILE_PATH="coverage/paper_system$BOOST.coverage" NAME="BOOST Coverage Results" MODIFIED="1588149801357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BOOST" />
+    <SUITE FILE_PATH="coverage/paper_system$BOOST.coverage" NAME="BOOST Coverage Results" MODIFIED="1588155697277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BOOST" />
     <SUITE FILE_PATH="coverage/paper_system$GA_MU__1_.coverage" NAME="GA_MU (1) Coverage Results" MODIFIED="1588136833605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GA-MU" />
     <SUITE FILE_PATH="coverage/paper_system$DE.coverage" NAME="DE Coverage Results" MODIFIED="1587993196753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DE" />
     <SUITE FILE_PATH="coverage/paper_system$create_data.coverage" NAME="create_data Coverage Results" MODIFIED="1587218239755" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
@@ -67,72 +44,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GA-MU/GA_MU.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="13700">
-              <caret line="548" selection-start-line="548" selection-end-line="548" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tools/res_initial.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="53" column="28" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tools/fit_fun.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3125">
-              <caret line="128" column="17" selection-start-line="128" selection-start-column="17" selection-end-line="128" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BOOST/BOOST.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="1557" lean-forward="true" selection-start-line="1557" selection-end-line="1557" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://F:/Anaconda/Anaconda3/Lib/random.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="221" selection-start-line="221" selection-end-line="221" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BOOST/figure/global_distribution.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BOOST/figure/BOOST_Fitness.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DE/DE.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10775">
-              <caret line="431" column="49" selection-start-line="431" selection-start-column="34" selection-end-line="431" selection-end-column="49" />
+            <state relative-caret-position="-1490">
+              <caret line="1417" column="39" lean-forward="true" selection-start-line="1417" selection-start-column="39" selection-end-line="1417" selection-end-column="39" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -240,12 +156,6 @@
               <item name="paper_system" type="b2602c69:ProjectViewProjectNode" />
               <item name="paper_system" type="462c0819:PsiDirectoryNode" />
               <item name="BOOST" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="paper_system" type="b2602c69:ProjectViewProjectNode" />
-              <item name="paper_system" type="462c0819:PsiDirectoryNode" />
-              <item name="BOOST" type="462c0819:PsiDirectoryNode" />
-              <item name="figure" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="paper_system" type="b2602c69:ProjectViewProjectNode" />
@@ -472,14 +382,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19154558" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1997319" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.33002833" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.46033993" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -576,9 +485,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
           <caret line="132" column="38" selection-start-line="132" selection-start-column="38" selection-end-line="132" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -587,9 +493,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
           <caret line="61" column="4" lean-forward="true" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="43" />
-          <folding>
-            <element signature="e#1#16#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -643,17 +546,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://F:/Anaconda/Anaconda3/Lib/random.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="221" selection-start-line="221" selection-end-line="221" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://F:/Anaconda/Anaconda3/Lib/random.py" />
     <entry file="file://$PROJECT_DIR$/BOOST/BOOST.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="1557" lean-forward="true" selection-start-line="1557" selection-end-line="1557" />
+        <state relative-caret-position="-1490">
+          <caret line="1417" column="39" lean-forward="true" selection-start-line="1417" selection-start-column="39" selection-end-line="1417" selection-end-column="39" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

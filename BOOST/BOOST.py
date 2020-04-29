@@ -1413,7 +1413,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
             for i in list(group[0].keys())[:-1]:
                 if i not in group[0]['teachers'] and i not in no_dabian:
                     rest_teachers.append(i)
-        print('rest_teachers', rest_teachers)
+        # print('rest_teachers', rest_teachers)
         # print('advance:',advance)
         # print('g_advance:',g_advance)
         # print('pre best:', pre_best)
@@ -1423,15 +1423,15 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
             for no_d in no_dabian:
                 if no_d in group[0]['teachers']:
                     group[0]['teachers'].pop(group[0]['teachers'].index(no_d))
-                    print('no_d',no_d)
+                    # print('no_d',no_d)
             while len(group[0]['teachers']) < teachers:
-                print('rest_teachers2', rest_teachers)
+                # print('rest_teachers2', rest_teachers)
                 random_num = random.randint(0, len(rest_teachers) - 1)
                 if rest_teachers[random_num] not in list(group[0].keys())[:-1] and teacher_statu[
                     rest_teachers[random_num]] not in group[1] and res_initial.teacher_teacher[
                     rest_teachers[random_num]] not in group[0]['teachers'] and rest_teachers[
                     random_num] not in no_dabian:
-                    print(boost_best.index(group), rest_teachers[random_num])
+                    # print(boost_best.index(group), rest_teachers[random_num])
                     group[0]['teachers'].append(rest_teachers[random_num])
                     rest_teachers.pop(random_num)
 

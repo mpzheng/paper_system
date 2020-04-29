@@ -1,5 +1,4 @@
 import random
-
 def random_pick(probabilities):
     x = random.uniform(0, 1)
     cumulative_probability = 0.0
