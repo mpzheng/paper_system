@@ -133,20 +133,24 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
     for lz in lzs:
         change_count.append(0)
         temp_cost = fit_fun.fit_all(lz, id_teacher, id_score, score_scale, n, same_teacher)
+        if temp_cost > cost:
+            cost = temp_cost
+            best_indx = lzs.index(lz)
         if temp_cost < 0:   ### ABC删除适应度小于0的蜜源
             test_i += 1
             while True:
                 temp_lzcsh, t_s = res_initial.lzcsh(data, n, x, 1, teachers, clash_teacher, same_teacher)
                 temp_cost = fit_fun.fit_all(temp_lzcsh[0], id_teacher, id_score, score_scale, n, same_teacher)
                 if temp_cost > 0:
-                    lzs[lzs.index(lz)] = copy.deepcopy(temp_lzcsh[0])
+                    temp_index = lzs.index(lz)
+                    lzs[temp_index] = copy.deepcopy(temp_lzcsh[0])
+                    if temp_cost > cost:
+                        cost = temp_cost
+                        best_indx = temp_index
                     break
         # print('cccccccccccccccccc')
         fit.append(temp_cost)
         fit_sum += temp_cost
-        if temp_cost > cost:
-            cost = temp_cost
-            best_indx = lzs.index(lz)
 
     for lz_fit in fit:
         probability.append(lz_fit/fit_sum)
@@ -1409,7 +1413,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
             for i in list(group[0].keys())[:-1]:
                 if i not in group[0]['teachers'] and i not in no_dabian:
                     rest_teachers.append(i)
-        # print(rest_teachers)
+        print('rest_teachers', rest_teachers)
         # print('advance:',advance)
         # print('g_advance:',g_advance)
         # print('pre best:', pre_best)
@@ -1419,14 +1423,15 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
             for no_d in no_dabian:
                 if no_d in group[0]['teachers']:
                     group[0]['teachers'].pop(group[0]['teachers'].index(no_d))
-                    # print(no_d)
+                    print('no_d',no_d)
             while len(group[0]['teachers']) < teachers:
+                print('rest_teachers2', rest_teachers)
                 random_num = random.randint(0, len(rest_teachers) - 1)
                 if rest_teachers[random_num] not in list(group[0].keys())[:-1] and teacher_statu[
                     rest_teachers[random_num]] not in group[1] and res_initial.teacher_teacher[
                     rest_teachers[random_num]] not in group[0]['teachers'] and rest_teachers[
                     random_num] not in no_dabian:
-                    # print(g_best.index(group), rest_teachers[random_num])
+                    print(boost_best.index(group), rest_teachers[random_num])
                     group[0]['teachers'].append(rest_teachers[random_num])
                     rest_teachers.pop(random_num)
 
@@ -1519,7 +1524,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
 
     print(boost_best_list[-1])
     for group in boost_best:
-        # print(group)
+        print(group)
         print(len(group[1]))
     a, b = tools.fit_fun.show_fit(boost_best, id_teacher, id_score, score_scale, n, same_teacher)
     # print("fit:")
@@ -1552,7 +1557,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
 #     print("成功写入！")
 
 #
-a,b,c,d = begin(n=6, accuracy_level=2,teachers=4,clash_teacher=[['陈昭炯','白清源']],no_dabian=['吴英杰','于元隆','吴运兵'])
+a,b,c,d = begin(n=6, accuracy_level=2,teachers=4,clash_teacher=[['陈昭炯','白清源']],no_dabian=['吴英杰'])
 print(d[-1])
 print(d)
 # a,b = begin(n=4, accuracy_level=4,teachers=4)
