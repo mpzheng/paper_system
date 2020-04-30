@@ -55,49 +55,13 @@
     <expand />
     <select />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="216214548">
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="jpg" value="19" />
-          <entry key="py" value="6" />
-          <entry key="svg" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Image" value="19" />
-          <entry key="Python" value="6" />
-          <entry key="SVG" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="py" value="379" />
-          <entry key="txt" value="10" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="PLAIN_TEXT" value="10" />
-          <entry key="Python" value="379" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.open.time.25" value="1" />
-          <entry key="project.opened" value="1" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BOOST/BOOST.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="1448" column="33" lean-forward="true" selection-start-line="1448" selection-start-column="33" selection-end-line="1448" selection-end-column="33" />
+            <state relative-caret-position="287">
+              <caret line="1590" column="10" lean-forward="true" selection-start-line="1590" selection-start-column="10" selection-end-line="1590" selection-end-column="10" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -116,7 +80,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>----j</find>
       <find>iteration = -1</find>
       <find>print(lz)</find>
       <find>print</find>
@@ -146,6 +109,7 @@
       <find>rest_teachers</find>
       <find>resu</find>
       <find>dtype</find>
+      <find>变异</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -179,7 +143,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="795" />
     <option name="width" value="1135" />
     <option name="height" value="1050" />
@@ -441,13 +405,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20241287" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20211361" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.46175638" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28186968" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -467,9 +432,6 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="补充" />
@@ -615,20 +577,14 @@
     <entry file="file://$PROJECT_DIR$/GA-MU/figure/global_distribution.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://E:/anaconda3/Lib/random.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="320" selection-start-line="320" selection-end-line="320" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://E:/anaconda3/Lib/random.py" />
     <entry file="file://$PROJECT_DIR$/GA-MU/figure/GA_MU_distribution.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/BOOST/BOOST.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="1448" column="33" lean-forward="true" selection-start-line="1448" selection-start-column="33" selection-end-line="1448" selection-end-column="33" />
+        <state relative-caret-position="287">
+          <caret line="1590" column="10" lean-forward="true" selection-start-line="1590" selection-start-column="10" selection-end-line="1590" selection-end-column="10" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

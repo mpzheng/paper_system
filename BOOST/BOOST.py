@@ -259,8 +259,15 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
                 # if ran_num < 0.1:
                 if ran_num < rd:
                     #print("*************发送变异************")
-                    random_tea = random.sample(list(teacher_set.difference(wait_selec_set_to_list)), 3)
-                    wait_selec_set_to_list += random_tea
+                    select_num = 3
+                    while select_num > 0:
+                        if select_num < len(list(teacher_set.difference(wait_selec_set_to_list))):
+                            random_tea = random.sample(list(teacher_set.difference(wait_selec_set_to_list)), 3)
+                            break
+                        else:
+                            select_num -= 1
+                    if select_num != 0:
+                        wait_selec_set_to_list += random_tea
 
                 # --dp  从n个数中抽 出x个数 使其和最接近m  关于第4点的启发式
                 # 这里的n 是wait_selec_set_to_list 老师对应的学生数 m是平均每组学生数
@@ -1417,17 +1424,13 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
 
         print("--b_best_val__:",temp)
 
-        iteration += 1
-        if iteration >= (accuracy_level * 50):    # 当迭代超过一定次数没有进步时退出迭代
-            break
-
         # 挑出没有作为答辩老师的老师
         rest_teachers = []
-        for group in boost_best[:-1]:
+        for group in boost_best:
             for i in list(group[0].keys())[:-1]:
                 if i not in group[0]['teachers'] and i not in no_dabian:
                     rest_teachers.append(i)
-        # print('rest_teachers', rest_teachers)
+        print('rest_teachers', rest_teachers)
         # print('advance:',advance)
         # print('g_advance:',g_advance)
         # print('pre best:', pre_best)
@@ -1437,9 +1440,15 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
             for no_d in no_dabian:
                 if no_d in group[0]['teachers']:
                     group[0]['teachers'].pop(group[0]['teachers'].index(no_d))
-                    # print('no_d',no_d)
+                    print('no_d',no_d)
+            re_time = 0
             while len(group[0]['teachers']) < teachers:
-                # print('rest_teachers2', rest_teachers)
+                print('rest_teachers2', rest_teachers)
+                re_time += 1
+                if re_time > 10:
+                    break
+                if len(rest_teachers) == 0:
+                    continue
                 random_num = random.randint(0, len(rest_teachers) - 1)
                 if rest_teachers[random_num] not in list(group[0].keys())[:-1] and teacher_statu[
                     rest_teachers[random_num]] not in group[1] and res_initial.teacher_teacher[
@@ -1449,10 +1458,14 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
                     group[0]['teachers'].append(rest_teachers[random_num])
                     rest_teachers.pop(random_num)
 
+        iteration += 1
+        if iteration >= (accuracy_level * 50):  # 当迭代超过一定次数没有进步时退出迭代
+            break
+
     # 2019/10/24
-    if fit_fun.fit_all(boost_best, id_teacher, id_score, score_scale, n, same_teacher) < 0:
-        print("过多老师在同组答辩")
-        return -3
+    # if fit_fun.fit_all(boost_best, id_teacher, id_score, score_scale, n, same_teacher) < 0:
+    #     print("过多老师在同组答辩")
+    #     return -3
 
     # # 打印图表
     # plot_scale(begin_best, 0,id_score)
@@ -1571,7 +1584,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
 #     print("成功写入！")
 
 #
-a,b,c,d = begin(n=6, accuracy_level=2,teachers=3,clash_teacher=[['陈昭炯','白清源']],no_dabian=['吴英杰','吴运兵','于元隆','郭昆','谢丽聪','张栋','王秀','余春艳'])
+a,b,c,d = begin(n=6, accuracy_level=2,teachers=4,clash_teacher=[['陈昭炯','白清源']],no_dabian=['吴英杰','吴运兵','于元隆','郭昆','谢丽聪','张栋','王秀','余春艳'])
 print(d[-1])
 print(d)
 # a,b = begin(n=4, accuracy_level=4,teachers=4)
