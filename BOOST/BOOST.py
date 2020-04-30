@@ -69,14 +69,28 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
     '''
     # data = pd.read_excel(io='../input_data/new_data.xlsx')
     # data = pd.read_excel(io=r'../input_data/file.xlsx')
-    data = pd.read_excel(io=r'../input_data/2020_data.xlsx')
-    data.columns = ["id", "score", "teacher"]
+    data = pd.read_excel(io=r'../input_data/2020_data.xlsx',dtype=object)
+    data22 = pd.read_excel(io=r'../input_data/2020_data.xlsx')
+    data22.columns = ["id", "score", "teacher", "name", "theme"]
+
+    data.columns = ["id", "score", "teacher","name","theme"]
     # 学号（学生）对应的老师
     id_teacher = dict([*zip(data["id"], data["teacher"])])
+    print(data["id"])
     # （学号）学生对应的绩点
     id_score = dict([*zip(data["id"], data["score"])])
+    #学号对应姓名
+    id_name = dict([*zip(data["id"], data["name"])])
+    # 学号对应论文题目
+    id_theme = dict([*zip(data["id"], data["theme"])])
+
+    print(id_name)
+    print(id_theme)
+
+    for k,v in id_score.items():
+        id_score[k] = float(v)
     score_scale = [0, 0, 0, 0, 0]
-    for i in data["score"]:
+    for k,i in id_score.items():
         if i < 2.0:
             score_scale[0] += 1
         elif i < 2.5:
@@ -92,7 +106,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
         score_scale[i] = score_scale[i] / data.shape[0]
     # 初始化函数 参数具体含义在fit
 
-    score_series = pd.Series(data["score"])
+    score_series = pd.Series(data22["score"])
     # print(score_series)
     axe = plt.subplot()
     axe.hist(score_series, bins=[1, 1.5, 2, 2.5, 3, 3.5, 4],density=True)
@@ -1516,7 +1530,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
     # //n个组的分布图
     tools.plot_fun.plot_scale(boost_best, "BOOST", id_score)
     # 将结果写到csv
-    tools.resultToCSV.to_CSV(boost_best, "BOOST", id_score, id_teacher)
+    tools.resultToCSV.to_CSV(boost_best, "BOOST", id_score, id_teacher,id_name,id_theme)
     # 画出迭代过程中多样性的图
     tools.plot_fun.plot_diversity(diversity_list, "BOOST")
     # 画出迭代过程中适应度的图
@@ -1557,7 +1571,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
 #     print("成功写入！")
 
 #
-a,b,c,d = begin(n=6, accuracy_level=2,teachers=4,clash_teacher=[['陈昭炯','白清源']],no_dabian=['吴英杰'])
+a,b,c,d = begin(n=6, accuracy_level=2,teachers=3,clash_teacher=[['陈昭炯','白清源']],no_dabian=['吴英杰','吴运兵','于元隆','郭昆','谢丽聪','张栋','王秀','余春艳'])
 print(d[-1])
 print(d)
 # a,b = begin(n=4, accuracy_level=4,teachers=4)

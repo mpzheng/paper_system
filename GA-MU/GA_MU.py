@@ -67,6 +67,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
     # data = pd.read_excel(io='../input_data/new_data.xlsx')
     # data = pd.read_excel(io=r'../input_data/file.xlsx')
     data = pd.read_excel(io=r'../input_data/2020_data.xlsx')
+
     data.columns = ["id", "score", "teacher"]
     # 学号（学生）对应的老师
     id_teacher = dict([*zip(data["id"], data["teacher"])])

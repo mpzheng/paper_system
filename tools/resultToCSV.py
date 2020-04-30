@@ -1,7 +1,7 @@
 import pandas as pd
 from tools import res_initial
 
-def to_CSV(g_best,name,id_score,id_teacher):
+def to_CSV(g_best,name,id_score,id_teacher,id_name,id_title):
     '''
     将解写成CSV格式
     :param g_best: 最终粒子解
@@ -10,7 +10,7 @@ def to_CSV(g_best,name,id_score,id_teacher):
     :param id_teacher:
     :return:
     '''
-    pd_data = {'学号': [], '绩点': [], '指导老师': [], '评阅老师': [], '答辩老师': []}
+    pd_data = {'姓名': [], '学号': [], '绩点': [], '论文题目': [], '指导老师': [], '评阅老师': [], '答辩老师': []}
     for i in g_best:
         # jg.write(str('{'))
         p_l = list(i[0].keys())
@@ -28,16 +28,20 @@ def to_CSV(g_best,name,id_score,id_teacher):
             # if i[1].index(student) != 0:
                 # jg.write(str(','))
             # jg.write(str(student))
+            pd_data['姓名'].append(id_name[student])
             pd_data['学号'].append(student)
             pd_data['绩点'].append(id_score[student])
+            pd_data['论文题目'].append(id_title[student])
             pd_data['指导老师'].append(id_teacher[student])
             pd_data['评阅老师'].append(res_initial.student_pingyue[student])
             temp = ""
             for te in i[0]['teachers']:
                 temp = temp + te + ",\n"
             pd_data['答辩老师'].append(temp)
+        pd_data['姓名'].append(' ')
         pd_data['学号'].append(' ')
         pd_data['绩点'].append(' ')
+        pd_data['论文题目'].append(' ')
         pd_data['指导老师'].append(' ')
         pd_data['评阅老师'].append(' ')
         pd_data['答辩老师'].append(' ')

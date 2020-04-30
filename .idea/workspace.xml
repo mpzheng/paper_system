@@ -2,11 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9dfa3050-c55c-4e87-8356-b1ac8185aec9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/paper_system.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/paper_system.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BOOST/BOOST.py" beforeDir="false" afterPath="$PROJECT_DIR$/BOOST/BOOST.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BOOST/figure/BOOST_Diversity.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/BOOST/figure/BOOST_Diversity.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BOOST/figure/BOOST_Fitness.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/BOOST/figure/BOOST_Fitness.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BOOST/figure/BOOST_distribution.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/BOOST/figure/BOOST_distribution.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BOOST/figure/BOOST_distribution.svg" beforeDir="false" afterPath="$PROJECT_DIR$/BOOST/figure/BOOST_distribution.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BOOST/figure/global_distribution.svg" beforeDir="false" afterPath="$PROJECT_DIR$/BOOST/figure/global_distribution.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GA-MU/GA_MU.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-MU/GA_MU.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GA-MU/figure/GA_MU_Diversity.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/GA-MU/figure/GA_MU_Diversity.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GA-MU/figure/GA_MU_Fitness.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/GA-MU/figure/GA_MU_Fitness.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GA-MU/figure/GA_MU_distribution.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/GA-MU/figure/GA_MU_distribution.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GA-MU/figure/GA_MU_distribution.svg" beforeDir="false" afterPath="$PROJECT_DIR$/GA-MU/figure/GA_MU_distribution.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GA-MU/figure/global_distribution.svg" beforeDir="false" afterPath="$PROJECT_DIR$/GA-MU/figure/global_distribution.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input_data/2020_data.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/input_data/2020_data.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/BOOSTresult.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/output/BOOSTresult.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/GA_MUresult.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/output/GA_MUresult.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/resultToCSV.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/resultToCSV.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,15 +30,16 @@
     <SUITE FILE_PATH="coverage/paper_system$fit_fun.coverage" NAME="fit_fun Coverage Results" MODIFIED="1585124029238" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
     <SUITE FILE_PATH="coverage/paper_system$Diversity.coverage" NAME="Diversity Coverage Results" MODIFIED="1585120003206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
     <SUITE FILE_PATH="coverage/paper_system$res_initial.coverage" NAME="res_initial Coverage Results" MODIFIED="1588136349770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
-    <SUITE FILE_PATH="coverage/paper_system$BOOST.coverage" NAME="BOOST Coverage Results" MODIFIED="1588155697277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BOOST" />
-    <SUITE FILE_PATH="coverage/paper_system$GA_MU__1_.coverage" NAME="GA_MU (1) Coverage Results" MODIFIED="1588136833605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GA-MU" />
-    <SUITE FILE_PATH="coverage/paper_system$DE.coverage" NAME="DE Coverage Results" MODIFIED="1587993196753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DE" />
+    <SUITE FILE_PATH="coverage/paper_system$BOOST.coverage" NAME="BOOST Coverage Results" MODIFIED="1588234709808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/BOOST" />
+    <SUITE FILE_PATH="coverage/paper_system$GA_MU__1_.coverage" NAME="GA_MU (1) Coverage Results" MODIFIED="1588159518604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GA-MU" />
     <SUITE FILE_PATH="coverage/paper_system$create_data.coverage" NAME="create_data Coverage Results" MODIFIED="1587218239755" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
     <SUITE FILE_PATH="coverage/paper_system$GA_NMU.coverage" NAME="GA_NMU Coverage Results" MODIFIED="1584951646143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GA" />
     <SUITE FILE_PATH="coverage/paper_system$GA_NMU__1_.coverage" NAME="GA_NMU (1) Coverage Results" MODIFIED="1587216798081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GA-NMU" />
+    <SUITE FILE_PATH="coverage/paper_system$ABC.coverage" NAME="ABC Coverage Results" MODIFIED="1587991172458" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ABC" />
+    <SUITE FILE_PATH="coverage/paper_system$resultToCSV.coverage" NAME="resultToCSV Coverage Results" MODIFIED="1588220570548" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
+    <SUITE FILE_PATH="coverage/paper_system$DE.coverage" NAME="DE Coverage Results" MODIFIED="1587993196753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DE" />
     <SUITE FILE_PATH="coverage/paper_system$GA_MU.coverage" NAME="GA_MU Coverage Results" MODIFIED="1584951808548" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GA" />
     <SUITE FILE_PATH="coverage/paper_system$plot_fun.coverage" NAME="plot_fun Coverage Results" MODIFIED="1584956810130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
-    <SUITE FILE_PATH="coverage/paper_system$ABC.coverage" NAME="ABC Coverage Results" MODIFIED="1587991172458" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ABC" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -42,13 +55,49 @@
     <expand />
     <select />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="216214548">
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="jpg" value="19" />
+          <entry key="py" value="6" />
+          <entry key="svg" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Image" value="19" />
+          <entry key="Python" value="6" />
+          <entry key="SVG" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="379" />
+          <entry key="txt" value="10" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="PLAIN_TEXT" value="10" />
+          <entry key="Python" value="379" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.25" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BOOST/BOOST.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1490">
-              <caret line="1417" column="39" lean-forward="true" selection-start-line="1417" selection-start-column="39" selection-end-line="1417" selection-end-column="39" />
+            <state relative-caret-position="294">
+              <caret line="1448" column="33" lean-forward="true" selection-start-line="1448" selection-start-column="33" selection-end-line="1448" selection-end-column="33" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -67,8 +116,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>j</find>
-      <find>--</find>
       <find>----j</find>
       <find>iteration = -1</find>
       <find>print(lz)</find>
@@ -91,12 +138,14 @@
       <find>boost_best_list</find>
       <find>--- 2</find>
       <find>---</find>
-      <find>---</find>
       <find>rd</find>
       <find>print(</find>
       <find>全局最优发生变化</find>
       <find>g_best</find>
       <find>2019/10/23不一起答辩</find>
+      <find>rest_teachers</find>
+      <find>resu</find>
+      <find>dtype</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -108,9 +157,7 @@
         <option value="$PROJECT_DIR$/GA/GA_NMU.py" />
         <option value="$PROJECT_DIR$/GA/GA_MU.py" />
         <option value="$PROJECT_DIR$/tools/Tool.py" />
-        <option value="$PROJECT_DIR$/tools/resultToCSV.py" />
         <option value="$PROJECT_DIR$/tools/plot_fun.py" />
-        <option value="$PROJECT_DIR$/tools/fit_fun.py" />
         <option value="$PROJECT_DIR$/tools/create_data.py" />
         <option value="$PROJECT_DIR$/BOOST.py" />
         <option value="$PROJECT_DIR$/tools/Diversity.py" />
@@ -118,6 +165,9 @@
         <option value="$PROJECT_DIR$/tools/res_initial.py" />
         <option value="$PROJECT_DIR$/output/statistic_data.txt" />
         <option value="$PROJECT_DIR$/DE/DE.py" />
+        <option value="$PROJECT_DIR$/tools/random_pick.py" />
+        <option value="$PROJECT_DIR$/tools/fit_fun.py" />
+        <option value="$PROJECT_DIR$/tools/resultToCSV.py" />
         <option value="$PROJECT_DIR$/GA-MU/GA_MU.py" />
         <option value="$PROJECT_DIR$/BOOST/BOOST.py" />
       </list>
@@ -139,7 +189,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -150,22 +199,24 @@
             <path>
               <item name="paper_system" type="b2602c69:ProjectViewProjectNode" />
               <item name="paper_system" type="462c0819:PsiDirectoryNode" />
-              <item name="ABC" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="paper_system" type="b2602c69:ProjectViewProjectNode" />
-              <item name="paper_system" type="462c0819:PsiDirectoryNode" />
               <item name="BOOST" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="paper_system" type="b2602c69:ProjectViewProjectNode" />
               <item name="paper_system" type="462c0819:PsiDirectoryNode" />
-              <item name="DE" type="462c0819:PsiDirectoryNode" />
+              <item name="BOOST" type="462c0819:PsiDirectoryNode" />
+              <item name="figure" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="paper_system" type="b2602c69:ProjectViewProjectNode" />
               <item name="paper_system" type="462c0819:PsiDirectoryNode" />
               <item name="GA-MU" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="paper_system" type="b2602c69:ProjectViewProjectNode" />
+              <item name="paper_system" type="462c0819:PsiDirectoryNode" />
+              <item name="GA-MU" type="462c0819:PsiDirectoryNode" />
+              <item name="figure" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="paper_system" type="b2602c69:ProjectViewProjectNode" />
@@ -186,6 +237,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -211,28 +263,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.BOOST">
-    <configuration name="ABC" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="paper_system" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ABC" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ABC/ABC.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="BOOST" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="paper_system" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -321,20 +351,42 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="resultToCSV" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="paper_system" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tools" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tools/resultToCSV.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.GA_MU (1)" />
       <item itemvalue="Python.DE" />
       <item itemvalue="Python.BOOST" />
       <item itemvalue="Python.res_initial" />
-      <item itemvalue="Python.ABC" />
+      <item itemvalue="Python.resultToCSV" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.BOOST" />
+        <item itemvalue="Python.resultToCSV" />
         <item itemvalue="Python.GA_MU (1)" />
         <item itemvalue="Python.res_initial" />
         <item itemvalue="Python.DE" />
-        <item itemvalue="Python.ABC" />
       </list>
     </recent_temporary>
   </component>
@@ -377,18 +429,25 @@
       <option name="project" value="LOCAL" />
       <updated>1587712810625</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="4.29 调整比重">
+      <created>1588155813606</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1588155813607</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1997319" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20241287" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.46033993" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.46175638" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -409,6 +468,9 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="补充" />
     <MESSAGE value="细节修改" />
@@ -419,13 +481,11 @@
     <MESSAGE value="boost综合（缺ABC 且不完善）" />
     <MESSAGE value="diversity修改" />
     <MESSAGE value="4.24 无新内容" />
-    <option name="LAST_COMMIT_MESSAGE" value="4.24 无新内容" />
+    <MESSAGE value="4.29 调整比重" />
+    <option name="LAST_COMMIT_MESSAGE" value="4.29 调整比重" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/BOOST.py" />
-    <entry file="file://$PROJECT_DIR$/BOOST/figure/BOOST_distribution.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/BOOST/figure/global_distribution.svg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -442,9 +502,6 @@
           <caret line="60" column="17" selection-start-line="60" selection-start-column="12" selection-end-line="60" selection-end-column="17" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BOOST/figure/BOOST_Diversity.jpg">
-      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/GA-NMU/figure/GA_NMU_distribution.jpg">
       <provider selected="true" editor-type-id="images" />
@@ -468,16 +525,6 @@
     <entry file="file://$PROJECT_DIR$/GA-MU/figure/GA_MU_Fitness.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/tools/random_pick.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tools/plot_fun.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-61">
-          <caret line="61" column="17" selection-start-line="61" selection-start-column="17" selection-end-line="61" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GA-NMU/figure/GA_NMU_distribution.svg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -496,36 +543,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GA-MU/figure/GA_MU_distribution.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GA-MU/figure/global_distribution.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://E:/anaconda3/Lib/site-packages/xlsxwriter/workbook.py" />
-    <entry file="file://$PROJECT_DIR$/BOOST/figure/BOOST_distribution.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GA-MU/GA_MU.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13700">
-          <caret line="548" selection-start-line="548" selection-end-line="548" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tools/fit_fun.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3125">
-          <caret line="128" column="17" selection-start-line="128" selection-start-column="17" selection-end-line="128" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BOOST/figure/global_distribution.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/BOOST/figure/BOOST_Fitness.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -533,9 +551,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10775">
           <caret line="431" column="49" selection-start-line="431" selection-start-column="34" selection-end-line="431" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -547,10 +562,73 @@
       </provider>
     </entry>
     <entry file="file://F:/Anaconda/Anaconda3/Lib/random.py" />
+    <entry file="file://$PROJECT_DIR$/tools/fit_fun.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="172" column="30" lean-forward="true" selection-start-line="172" selection-start-column="30" selection-end-line="172" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BOOST/figure/BOOST_Diversity.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/plot_fun.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="995">
+          <caret line="88" column="20" lean-forward="true" selection-start-line="88" selection-start-column="20" selection-end-line="88" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/random_pick.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="13" selection-start-column="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BOOST/figure/BOOST_distribution.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BOOST/figure/global_distribution.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/resultToCSV.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-502">
+          <caret line="5" column="13" lean-forward="true" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BOOST/figure/BOOST_distribution.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GA-MU/GA_MU.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9410">
+          <caret line="95" column="63" selection-start-line="95" selection-start-column="63" selection-end-line="95" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GA-MU/figure/global_distribution.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://E:/anaconda3/Lib/random.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="320" selection-start-line="320" selection-end-line="320" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GA-MU/figure/GA_MU_distribution.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/BOOST/BOOST.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1490">
-          <caret line="1417" column="39" lean-forward="true" selection-start-line="1417" selection-start-column="39" selection-end-line="1417" selection-end-column="39" />
+        <state relative-caret-position="294">
+          <caret line="1448" column="33" lean-forward="true" selection-start-line="1448" selection-start-column="33" selection-end-line="1448" selection-end-column="33" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
