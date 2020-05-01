@@ -1450,11 +1450,11 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
                 if len(rest_teachers) == 0:
                     continue
                 random_num = random.randint(0, len(rest_teachers) - 1)
-                if rest_teachers[random_num] not in list(group[0].keys())[:-1] and teacher_statu[
-                    rest_teachers[random_num]] not in group[1] and res_initial.teacher_teacher[
-                    rest_teachers[random_num]] not in group[0]['teachers'] and rest_teachers[
+                if rest_teachers[random_num] not in list(group[0].keys())[:-1] and bool(1-set(teacher_statu[
+                    rest_teachers[random_num]]).issubset(group[1])) and bool(1-set(res_initial.teacher_teacher[
+                    rest_teachers[random_num]]).issubset(group[0]['teachers'])) and rest_teachers[
                     random_num] not in no_dabian:
-                    # print(boost_best.index(group), rest_teachers[random_num])
+                    print(boost_best.index(group), rest_teachers[random_num])
                     group[0]['teachers'].append(rest_teachers[random_num])
                     rest_teachers.pop(random_num)
 
@@ -1584,7 +1584,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
 #     print("成功写入！")
 
 #
-a,b,c,d = begin(n=6, accuracy_level=2,teachers=4,clash_teacher=[['陈昭炯','白清源']],no_dabian=['吴英杰','吴运兵','于元隆','郭昆','谢丽聪','张栋','王秀','余春艳'])
+a,b,c,d = begin(n=6, accuracy_level=2,teachers=4,clash_teacher=[['陈昭炯','白清源','叶东毅']],no_dabian=['吴英杰','吴运兵','于元隆','郭昆','牛玉贞'])
 print(d[-1])
 print(d)
 # a,b = begin(n=4, accuracy_level=4,teachers=4)
