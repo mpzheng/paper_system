@@ -20,6 +20,12 @@ import tools.resultToCSV
 import tools.Diversity
 import tools.random_pick
 
+def if_union(a=[],b=[]):
+    if len(list(set(a)&set(b))) == 0:
+        return False
+    else:
+        return True
+
 def show_detail(res, id_teacher):
     '''
     :param res: 初始化的多个粒子
@@ -262,7 +268,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
                     select_num = 3
                     while select_num > 0:
                         if select_num < len(list(teacher_set.difference(wait_selec_set_to_list))):
-                            random_tea = random.sample(list(teacher_set.difference(wait_selec_set_to_list)), 3)
+                            random_tea = random.sample(list(teacher_set.difference(wait_selec_set_to_list)), select_num)
                             break
                         else:
                             select_num -= 1
@@ -427,7 +433,9 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
                                 d_t += 1
                                 if d_t >= len(group[0]['teachers']):
                                     break
-
+            for group in lz:
+                print(group)
+            print('/n')
             # 计算迭代后粒子的cost
             cost_2 = fit_fun.fit_all(lz, id_teacher, id_score, score_scale, n, same_teacher)
 
@@ -1450,10 +1458,10 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
                 if len(rest_teachers) == 0:
                     continue
                 random_num = random.randint(0, len(rest_teachers) - 1)
-                if rest_teachers[random_num] not in list(group[0].keys())[:-1] and bool(1-set(teacher_statu[
-                    rest_teachers[random_num]]).issubset(group[1])) and bool(1-set(res_initial.teacher_teacher[
-                    rest_teachers[random_num]]).issubset(group[0]['teachers'])) and rest_teachers[
-                    random_num] not in no_dabian:
+                if rest_teachers[random_num] not in list(group[0].keys())[:-1] and bool(1-if_union(teacher_statu[
+                    rest_teachers[random_num]], group[1])) and bool(1-if_union(res_initial.teacher_teacher[
+                    rest_teachers[random_num]], group[0]['teachers']))and rest_teachers[random_num] not in no_dabian:
+                    print(res_initial.teacher_teacher[rest_teachers[random_num]])
                     print(boost_best.index(group), rest_teachers[random_num])
                     group[0]['teachers'].append(rest_teachers[random_num])
                     rest_teachers.pop(random_num)
@@ -1539,20 +1547,20 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
     # for i in g_best:
     #     print(len(i[1]))
 
+    print(boost_best_list[-1])
+    for group in boost_best:
+        print(group)
+        print(len(group[1]))
     # print(diversity_list)
-    # //n个组的分布图
-    tools.plot_fun.plot_scale(boost_best, "BOOST", id_score)
     # 将结果写到csv
     tools.resultToCSV.to_CSV(boost_best, "BOOST", id_score, id_teacher,id_name,id_theme)
     # 画出迭代过程中多样性的图
     tools.plot_fun.plot_diversity(diversity_list, "BOOST")
     # 画出迭代过程中适应度的图
     tools.plot_fun.plot_fitness(g_best_list, "BOOST")
+    # //n个组的分布图
+    tools.plot_fun.plot_scale(boost_best, "BOOST", id_score)
 
-    print(boost_best_list[-1])
-    for group in boost_best:
-        print(group)
-        print(len(group[1]))
     a, b = tools.fit_fun.show_fit(boost_best, id_teacher, id_score, score_scale, n, same_teacher)
     # print("fit:")
     # print(a+b)
@@ -1584,7 +1592,7 @@ def begin(n=4, x=2, n_groups=50, teachers=4, accuracy_level=2, clash_teacher=[],
 #     print("成功写入！")
 
 #
-a,b,c,d = begin(n=6, accuracy_level=2,teachers=4,clash_teacher=[['陈昭炯','白清源','叶东毅']],no_dabian=['吴英杰','吴运兵','于元隆','郭昆','牛玉贞'])
+a,b,c,d = begin(n=7, accuracy_level=1,teachers=3,clash_teacher=[['陈昭炯','白清源','叶东毅'],['谢丽聪','陈昭炯']],no_dabian=['吴英杰','吴运兵','于元隆','郭昆','牛玉贞'])
 print(d[-1])
 print(d)
 # a,b = begin(n=4, accuracy_level=4,teachers=4)
